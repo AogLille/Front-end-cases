@@ -1,0 +1,93 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+ul {
+	list-style: none;
+}
+body {
+	background-color: #3ae78e;
+}
+.box {
+	width: 250px;
+	margin: 3rem auto;
+	text-align: center;
+}
+
+.select-list {
+	display: flex;
+	justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.select-list-label {
+	color: white;
+	opacity: 0.6;
+	font-size: 20px;
+	cursor: pointer;
+}
+
+.select-list-active {
+	opacity: 1;
+}
+
+.pointer {
+    width: 0;
+    height: 0;
+    border-left: 1rem solid transparent;
+    border-right: 1rem solid transparent;
+    border-bottom: 1rem solid #fff;
+    position: relative;
+    right: 15px;
+}
+
+.pointer.login {
+    right: 100px;
+}
+
+.pointer.forget {
+    left: 100px;
+}
+
+input {
+    display: block;
+    margin: 10px 0;
+    width: 100%;
+    height: 45px;
+    border: 0;
+    border-radius: 10px;
+    text-align: center;
+    transition: all .3s ease;
+    font-size: 18px;
+}
+input:focus {
+    outline-color: #fff;
+}
+
+.hidden {
+    height: 0;
+    margin: 0;
+}
+
+.btn {
+    width: 100%;
+    height: 45px;
+    border: 0;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #2b8484;
+    color: #fff;
+    font-size: 18px;
+}
+
+button.btn-login::before {
+    content: '登录';
+}
+
+button.btn-register::before {
+    content: '注册';
+}
+button.btn-forget::before {
+    content: '修改密码';
+}
