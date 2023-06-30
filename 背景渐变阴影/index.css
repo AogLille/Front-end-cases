@@ -1,0 +1,48 @@
+:root {
+	--x: 0px;
+	--y: 0px;
+}
+
+.box {
+	width: 250px;
+	height: 400px;
+	margin: 20px auto;
+	position: relative;
+    /* background-color: pink; */
+    
+}
+
+.box::after {
+	content: '';
+	position: absolute;
+	left: var(--x);
+	top: var(--y);
+	width: 100%;
+	height: 100%;
+	filter: blur(20px);
+	background: linear-gradient(#7aba4b, #8ea47e, #4b449e, #8448c0, #212a74, #dced69, #1c6b52);
+    z-index: -1;
+    clip-path: polygon(
+        -100vmax -100vmax,
+        100vmax -100vmax,
+        100vmax 100vmax,
+        -100vmax 100vmax,
+        -100vmax -100vmax,
+        calc(0px - var(--x)) calc(0px - var(--y)),
+        calc(0px - var(--x)) calc(100% - var(--y)),
+        calc(100% - var(--x)) calc(100% - var(--y)),
+        calc(100% - var(--x)) calc(0px - var(--y)),
+        calc(0px - var(--x)) calc(0px - var(--y))
+    );
+}
+
+
+/* 
+`clip-path: polygon()` 是 CSS 中的一个属性
+    它定义了一个裁剪区域，只有在这个区域内的部分才会被显示出来。
+    在 `polygon()` 函数中，你可以定义多个点，这些点将按照你定义的顺序连接起来，形成一个多边形。
+ `clip-path: polygon()` 中
+    点的顺序（即它们是按照顺时针方向还是逆时针方向定义的）决定了哪部分是裁剪区域。
+    如果点是按照顺时针方向定义的，那么这个多边形的内部将是裁剪区域；
+    如果点是按照逆时针方向定义的，那么这个多边形的外部将是裁剪区域。
+*/
