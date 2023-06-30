@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            width: 150px;
+            margin: 50px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        button {
+            width: 60px;
+            height: 30px;
+        }
+
+        img {
+            width: 100px;
+            height: 100px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <button class="start">start</button>
+        <button class="paused">paused</button>
+    </div>
+    <div class="images">
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.2/FileSaver.min.js"></script>
+    <script>
+        const start = document.querySelector('.start')
+        const paused = document.querySelector('.paused')
+        const images = document.querySelector('.images')
+        let timer = null
+        start.addEventListener('click', function () {
+            timer = setInterval(getImage, 1000)
+        })
+        paused.addEventListener('click', function () {
+            clearInterval(timer)
+        })
+        function getImage() {
+            let xhr = new XMLHttpRequest()
+            xhr.open('GET', '********')  //api url
+            xhr.send()
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    let img = document.createElement('img')
+                    img.src = xhr.responseURL
+                    images.append(img)
+                    fetch(xhr.responseURL)
+                        .then(response => response.blob())
+                        .then(blob => {
+                            var url = window.URL.createObjectURL(blob);
+                            console.log(url)
+                            var saveAs = window.saveAs;
+                            saveAs(url, createRandomHash() + '.jpg');
+                        })
+                        .catch((err) => console.dir(err));
+
+                }
+            }
+        }
+        function createRandomHash() {
+            return Math.random().toString(36).substr(2) + Date.now().toString(36);
+        }
+    </script>
+
+</body>
+
+</html>
