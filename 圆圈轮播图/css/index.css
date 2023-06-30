@@ -1,0 +1,73 @@
+:root {
+	--size: 200px; /*展示框尺寸*/
+	--r: calc(var(--size) / 2); /*展示框小圆半径*/
+	--imgCount: 6; /* 展示图片的数量*/
+	--deg: calc(360deg / var(--imgCount)); /* 将inner的圆心同相邻两个图片的圆心彼此相连，两个inner半径的夹角*/
+	--innerRaduis: calc(var(--r) / sin(var(--deg) / 2)); /* 根据夹角以及对边，根据正弦定理计算出inner的半径 */
+	--innerSize: calc(var(--innerRaduis) * 2); /* 半径乘以2就是inner的尺寸大小 */
+}
+body {
+	background-color: #000;
+}
+.container {
+	width: var(--size);
+	height: var(--size);
+	border-radius: 50%;
+	outline: 5px solid #fff;
+	margin: 50px auto;
+	display: flex;
+	justify-content: center;
+}
+
+.inner {
+	width: var(--innerSize);
+	height: var(--innerSize);
+	border-radius: 50%;
+	outline: 5px solid #fff;
+	flex-shrink: 0;
+	margin-top: calc(var(--size) / 2);
+	position: relative;
+}
+
+.inner img {
+	position: absolute;
+	left: 50%;
+	margin-left: calc(-1 * var(--r));
+	width: var(--size);
+	height: var(--size);
+	border-radius: 50%;
+	margin-top: calc(var(--r) * -1);
+	transform-origin: center calc(var(--r) + var(--innerRaduis));
+	&:nth-child(1) {
+		transform: rotate(calc(var(--deg) * 0));
+	}
+	&:nth-child(2) {
+		transform: rotate(calc(var(--deg) * 1));
+	}
+	&:nth-child(3) {
+		transform: rotate(calc(var(--deg) * 2));
+	}
+	&:nth-child(4) {
+		transform: rotate(calc(var(--deg) * 3));
+	}
+	&:nth-child(5) {
+		transform: rotate(calc(var(--deg) * 4));
+	}
+	&:nth-child(6) {
+		transform: rotate(calc(var(--deg) * 5));
+	}
+}
+
+/* 接下来旋转用原生的css不方便计算编写了 */
+/* 具体思路
+    每个图片有两个时间：旋转时间和停留时间，然后计算出总时间，即一个动画的总时间
+    然后计算出停留时间的百分比，设为：stay 。例如有六张图片，每个图片的时间占比就是16.66666%，设为single,即每个图片旋转所占总时间的百分比为single*(1-stay),停留时间占比就是single*stay，每个图片的两个百分比都出来了，动画即可实现了。
+    例如：
+    @keyframes rotatetion {
+	10%,
+	20% {
+		transform: rotate(90deg);
+	}
+    即在总时间的10%内旋转90°，然后再停留10%的时间后继续处理接下来的动画
+}
+*/
