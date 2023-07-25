@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <label for="count" class="scale-input" style="display: block; margin: 30px auto; width: 500px;">
+        <span id="mySpan">数量</span>
+        <input spellcheck="false" value="0.500" id="count">
+    </label>
+    <div id="overlay" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;"></div>
+
+    <script>
+        var span = document.getElementById("mySpan");
+        var overlay = document.getElementById("overlay");
+        var lastX;
+        var input = document.querySelector('#count')
+        span.addEventListener("mouseenter", function (event) {
+            event.target.style.cursor = "ew-resize";
+        }, false);
+
+        span.addEventListener("mousedown", function (event) {
+            document.body.style.cursor = "none";
+            overlay.style.display = "block";
+            lastX = event.clientX;
+
+            document.onmousemove = function (e) {
+                if (e.clientX > lastX) {
+                    input.value = (+input.value + 0.001).toFixed(3)
+                } else if (e.clientX < lastX) {
+                    input.value = (+input.value - 0.001).toFixed(3)
+                }
+                lastX = e.clientX;
+            }
+        }, false);
+
+        document.addEventListener("mouseup", function (event) {
+            document.onmousemove = null;
+            document.body.style.cursor = "auto";
+            overlay.style.display = "none";
+        }, false);
+    </script>
+
+</body>
+
+</html>
