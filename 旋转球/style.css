@@ -1,0 +1,147 @@
+:root {
+	--duration: 3s;
+	--pathLength: 300px;
+	--ballWidth: 30px;
+	--ballCount: 8;
+	--botColor: transparent;
+}
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.container {
+	width: var(--pathLength);
+	height: var(--pathLength);
+	border-radius: 50%;
+	position: relative;
+	/* background-color: rgb(147, 157, 161); */
+}
+
+.bot {
+	position: absolute;
+	width: var(--pathLength);
+	height: var(--ballWidth);
+	top: 50%;
+}
+/* .mask {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 350px;
+	height: 350px;
+	background-color: transparent;
+	border-radius: 50%;
+	transform: translate(-50%, -50%);
+} */
+/* 球 */
+.ball {
+	width: var(--ballWidth);
+	height: var(--ballWidth);
+	position: absolute;
+	left: 0;
+	top: 50%;
+	transform: translateY(-50%);
+	background: radial-gradient(circle at 30% 30%, #ffcc00, #ffcc00 5%, #ff9900 45%, #cc7a00 50%, #996300 60%, #663d00 100%);
+	border-radius: 50%;
+	animation: move var(--duration) ease-in-out infinite alternate;
+}
+
+.ball1 {
+	animation-delay: 0s;
+}
+.ball2 {
+	animation-delay: calc(var(--duration) / var(--ballCount));
+}
+.ball3 {
+	animation-delay: calc(var(--duration) * 2 / var(--ballCount));
+}
+.ball4 {
+	animation-delay: calc(var(--duration) * 3 / var(--ballCount));
+}
+.ball5 {
+	animation-delay: calc(var(--duration) * 4 / var(--ballCount));
+}
+.ball6 {
+	animation-delay: calc(var(--duration) * 5 / var(--ballCount));
+}
+.ball7 {
+	animation-delay: calc(var(--duration) * 6 / var(--ballCount));
+}
+.ball8 {
+	animation-delay: calc(var(--duration) * 7 / var(--ballCount));
+}
+
+.bot11 {
+	transform: translateY(-50%) rotate(0deg);
+	background-color: var(--botColor);
+}
+.bot22 {
+	transform: translateY(-50%) rotate(22.5deg);
+	background-color: var(--botColor);
+}
+.bot33 {
+	transform: translateY(-50%) rotate(45deg);
+	background-color: var(--botColor);
+}
+.bot44 {
+	transform: translateY(-50%) rotate(67.5deg);
+	background-color: var(--botColor);
+}
+.bot55 {
+	transform: translateY(-50%) rotate(90deg);
+	background-color: var(--botColor);
+}
+.bot66 {
+	transform: translateY(-50%) rotate(112.5deg);
+	background-color: var(--botColor);
+}
+.bot77 {
+	transform: translateY(-50%) rotate(135deg);
+	background-color: var(--botColor);
+}
+.bot88 {
+	transform: translateY(-50%) rotate(157.5deg);
+	background-color: var(--botColor);
+}
+.bot1 {
+	transform: translateY(-50%) rotate(0deg);
+}
+
+.bot2 {
+	transform: translateY(-50%) rotate(22.5deg);
+}
+
+.bot3 {
+	transform: translateY(-50%) rotate(45deg);
+}
+
+.bot4 {
+	transform: translateY(-50%) rotate(67.5deg);
+}
+
+.bot5 {
+	transform: translateY(-50%) rotate(90deg);
+}
+
+.bot6 {
+	transform: translateY(-50%) rotate(112.5deg);
+}
+.bot7 {
+	transform: translateY(-50%) rotate(135deg);
+}
+.bot8 {
+	transform: translateY(-50%) rotate(157.5deg);
+}
+
+@keyframes move {
+	to {
+		left: calc(var(--pathLength) - var(--ballWidth));
+	}
+}
