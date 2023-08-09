@@ -1,5 +1,5 @@
 :root {
-	--duration: 3s;
+	--duration: 2s;
 	--pathLength: 300px;
 	--ballWidth: 30px;
 	--ballCount: 8;
@@ -15,13 +15,30 @@ body {
 	align-items: center;
 	justify-content: center;
 }
-
+.control {
+	width: 150px;
+	height: 90px;
+	position: relative;
+	left: -100px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+}
+button {
+    width: 70px;
+    height: 30px;
+    border: 1px solid;
+    background-color: aliceblue;
+    cursor: pointer;
+}
 .container {
+	top: 50px;
 	width: var(--pathLength);
 	height: var(--pathLength);
 	border-radius: 50%;
 	position: relative;
-	/* background-color: rgb(147, 157, 161); */
+	background-color: rgb(147, 157, 161);
 }
 
 .bot {
@@ -48,7 +65,7 @@ body {
 	left: 0;
 	top: 50%;
 	transform: translateY(-50%);
-	background: radial-gradient(circle at 30% 30%, #ffcc00, #ffcc00 5%, #ff9900 45%, #cc7a00 50%, #996300 60%, #663d00 100%);
+	background: radial-gradient(circle at 30% 30%, #ffffff, #ffffff 5%, #e6e6e6 45%, #cccccc 50%, #b3b3b3 60%, #808080 100%);
 	border-radius: 50%;
 	animation: move var(--duration) ease-in-out infinite alternate;
 }

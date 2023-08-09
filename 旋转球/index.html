@@ -9,6 +9,11 @@
 </head>
 
 <body>
+    <div class="control">
+        <button class="start">开始</button>
+        <button class="paused">暂停</button>
+    </div>
+
     <div class="container">
         <div class="bot bot11">
         </div>
@@ -52,6 +57,31 @@
             <div class="ball ball8"></div>
         </div>
     </div>
+    <script>
+        let start = document.querySelector('.start')
+        let paused = document.querySelector('.paused')
+        let balls = document.querySelectorAll('.ball')
+
+        let animationState = balls[0].style.animationPlayState
+
+        start.addEventListener('click', function (e) {
+            balls.forEach(ball => {
+                ball.style.animationPlayState = "running"
+            });
+        })
+
+        paused.addEventListener('click', function (e) {
+            balls.forEach(ball => {
+                if (ball.style.animationPlayState != "paused") {
+                    ball.style.animationPlayState = "paused"
+                }
+                else {
+                    ball.style.animationPlayState = "running"
+                }
+
+            });
+        })
+    </script>
 </body>
 
 </html>
