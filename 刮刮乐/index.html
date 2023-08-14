@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="mycanvas"></canvas>
+    <script>
+        const canvas = document.querySelector('#mycanvas');
+        const ctx = canvas.getContext('2d');
+        let flag = false;
+        const img = new Image();
+        img.src = './gua.png';
+        canvas.width = img.width;
+        canvas.height = img.height;
+        const faceImage = new Image();
+        faceImage.src = './face.jpg';
+        faceImage.onload = function () {
+            ctx.drawImage(faceImage, 0, 0, canvas.width, canvas.height);
+        }
+        canvas.onmousedown = function (e) {
+            flag = true;
+        }
+        canvas.onmouseup = function (e) {
+            flag = false;
+        }
+        canvas.onmousemove = function (e) {
+            if (flag) {
+                const x = e.offsetX;
+                const y = e.offsetY;
+                //从第一个图片截取10*10的区域，放到第二个图片的x,y位置
+                ctx.drawImage(img, x, y, 10, 10, x, y, 10, 10);
+            }
+        }
+    </script>
+</body>
+
+</html>
