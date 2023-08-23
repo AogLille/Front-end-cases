@@ -16,7 +16,7 @@ async function autoAppend() {
 	function transfer(text) {
 		return `<p>${text}</p>`
 	}
-	const content = 'adshasdhakjshdlkahsdklahdkadlkjaskdjakdjlka'
+	const content = 'In every life-changing Wish for children with critical illnesses and their families, there are hopes as they start to long for something to happen and make a difference; there is happiness when they find their wishes are realized; there are always what goes beyond our imagination.'
 	for (let i = 0; i < content.length; i++) {
 		let text = content.slice(0, i)
 		let result = transfer(text)
