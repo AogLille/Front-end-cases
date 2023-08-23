@@ -42,8 +42,8 @@
         }
         canvas.onmousemove = function (e) {
             if (flag) {
-                const x = e.offsetX;
-                const y = e.offsetY;
+                const x = e.offsetX - 5;
+                const y = e.offsetY - 5;
                 //从第一个图片截取10*10的区域，放到第二个图片的x,y位置
                 ctx.drawImage(img, x, y, 10, 10, x, y, 10, 10);
             }
