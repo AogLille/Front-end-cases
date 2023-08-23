@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilinear Interpolation Animation</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas" width="400" height="100"></canvas>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        const srcColors = [
+            [255, 0, 0, 255], // Red
+            [0, 0, 255, 255]  // Blue
+        ];
+
+        let t = 0;
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Bilinear interpolation
+            for (let x = 0; x < canvas.width; x++) {
+                const xFrac = Math.sin(t + x * 0.01);
+                const pixel = [0, 0, 0, 0];
+
+                for (let dx = 0; dx <= 1; dx++) {
+                    const weight = (1 - dx * xFrac);
+                    const srcPos = dx;
+
+                    for (let i = 0; i < 4; i++) {
+                        pixel[i] += weight * srcColors[srcPos][i];
+                    }
+                }
+
+                // Draw interpolated color
+                ctx.fillStyle = `rgba(${pixel.map(Math.round).join(',')})`;
+                ctx.fillRect(x, 0, 1, 100);
+            }
+
+            t += 0.05;
+            requestAnimationFrame(draw);
+        }
+
+        draw();
+    </script>
+</body>
+
+</html>
